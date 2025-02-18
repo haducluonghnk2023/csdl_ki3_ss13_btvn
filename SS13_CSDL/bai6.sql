@@ -7,7 +7,7 @@ CREATE TABLE enrollments_history (
     message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+set autocommit = 0;
 DELIMITER $$
 CREATE PROCEDURE RegisterCourse(
     IN p_student_name VARCHAR(50),
@@ -40,7 +40,7 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Course not found';
     END IF;
     -- Kiểm tra xem sinh viên đã đăng ký môn học này chưa
-    SELECT COUNT(*) INTO v_enrolled 
+    SELECT COUNT(emrollment_id) INTO v_enrolled 
     FROM enrollments 
     WHERE student_id = v_student_id AND course_id = v_course_id;
     IF v_enrolled > 0 THEN
