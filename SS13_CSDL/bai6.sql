@@ -7,7 +7,7 @@ CREATE TABLE enrollments_history (
     message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-set autocommit = 0;
+
 DELIMITER $$
 CREATE PROCEDURE RegisterCourse(
     IN p_student_name VARCHAR(50),
